@@ -8,11 +8,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  #material
   cupertino_icons: ^1.0.2
+  #qr
   qr_flutter: ^4.1.0
+  #cache
   shared_preferences: ^2.2.2
-
+  #state
+  flutter_riverpod: ^2.4.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -25,3 +28,10 @@ flutter:
   assets:
     - assets/
 
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Italic.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
