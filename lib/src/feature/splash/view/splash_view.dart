@@ -5,8 +5,8 @@ import 'package:qr_code_scanner_flutter/src/core/const/device_size.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 import 'package:qr_code_scanner_flutter/src/feature/splash/viewmodel/splash_viewmodel.dart';
 
-class SplashPage extends ConsumerStatefulWidget {
-  const SplashPage({
+class SplashView extends ConsumerStatefulWidget {
+  const SplashView({
     Key? key,
   }) : super(key: key);
 
@@ -14,7 +14,7 @@ class SplashPage extends ConsumerStatefulWidget {
   ConsumerState createState() => _SplashViewState();
 }
 
-class _SplashViewState extends ConsumerState<SplashPage> with SplashViewModel {
+class _SplashViewState extends ConsumerState<SplashView> with SplashViewModel {
   @override
   Widget build(BuildContext context) {
     final currentTheme = ref.watch(themeProvider);
