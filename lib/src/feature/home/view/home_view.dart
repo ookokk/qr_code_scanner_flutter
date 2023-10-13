@@ -22,6 +22,7 @@ class HomeView extends ConsumerWidget {
                 height: 28,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   HomeButton(
                     text: Strings.scan,
