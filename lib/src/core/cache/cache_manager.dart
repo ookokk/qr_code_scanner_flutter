@@ -1,6 +1,14 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheManager {
+  static final CacheManager _singleton = CacheManager._internal();
+
+  factory CacheManager() {
+    return _singleton;
+  }
+
+  CacheManager._internal();
+
   static const String themeKey = 'theme';
   static const String firstTimeKey = 'firstTime';
 

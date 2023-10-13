@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/device_size.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
@@ -51,13 +52,15 @@ class GetStartedView extends ConsumerWidget {
                       minimumSize: const Size(60, 60),
                       maximumSize: const Size(60, 60)),
                   onPressed: () {
+                    final cache = CacheManager();
+                    cache.setFirstTime();
                     Navigator.pushNamedAndRemoveUntil(
                         context, '/home', (route) => false);
                   },
                   child: const Icon(
                     Icons.arrow_forward_sharp,
                     size: 30,
-                  ))
+                  )),
             ],
           ),
         ),

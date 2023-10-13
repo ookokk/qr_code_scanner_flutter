@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
+import 'package:qr_code_scanner_flutter/src/feature/home/model/custom_app_bar.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({
@@ -8,6 +10,9 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const SafeArea(child: Scaffold());
+    return const SafeArea(
+        child: Scaffold(
+      appBar: CustomAppBar(),
+    ));
   }
 }
