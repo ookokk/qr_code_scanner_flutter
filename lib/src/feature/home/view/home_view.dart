@@ -8,6 +8,6 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(child: Scaffold());
+    return const SafeArea(child: Scaffold());
   }
 }

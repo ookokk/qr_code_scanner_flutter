@@ -8,17 +8,9 @@ mixin SplashViewModel on ConsumerState<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      checkAndNavigate();
-    });
-  }
-
-  Future<void> checkAndNavigate() async {
-    var status = await Permission.camera.request();
-    if (status.isGranted) {
       Navigator.pushNamedAndRemoveUntil(
           context, '/qrScanner', (route) => false);
-    } else if (status.isPermanentlyDenied) {
-    } else {}
+    });
   }
 
   Future<bool> checkCameraPermission() async {

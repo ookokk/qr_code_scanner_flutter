@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/routes.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/view/qr_scanner_view.dart';
-import 'package:qr_code_scanner_flutter/src/feature/splash/view/splash_view.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
-      home: QrScannerView(),
+      home: const QrScannerView(),
     );
   }
 }
