@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/model/custom_app_bar.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/widget/home_button.dart';
+import 'package:qr_code_scanner_flutter/src/feature/home/widget/rate_us_card.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({
@@ -36,7 +37,11 @@ class HomeView extends ConsumerWidget {
                     imagePath: "assets/animations/create.json",
                   ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: 18,
+              ),
+              RateUsCard()
             ],
           ),
         ),
