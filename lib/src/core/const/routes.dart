@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner_flutter/src/feature/get_started/view/get_started_view.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/view/home_view.dart';
+import 'package:qr_code_scanner_flutter/src/feature/home/view/qr_create_view.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/view/qr_scanner_view.dart';
 import 'package:qr_code_scanner_flutter/src/feature/splash/view/splash_view.dart';
 
@@ -22,5 +23,6 @@ class Routes {
     home: (context) => const HomeView(),
     //   settings: (context) => const SettingsView(),
     qrScanner: (context) => const QrScannerView(),
+    qrCreate: (context) => const QrCreateView(),
   };
 }

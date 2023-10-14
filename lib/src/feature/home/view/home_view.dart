@@ -12,14 +12,14 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const SafeArea(
+    return SafeArea(
         child: Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 28,
               ),
               Row(
@@ -28,20 +28,26 @@ class HomeView extends ConsumerWidget {
                   HomeButton(
                     text: Strings.scan,
                     imagePath: "assets/animations/scan.json",
+                    onTap: () {
+                      Navigator.pushNamed(context, '/qrScanner');
+                    },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   HomeButton(
                     text: Strings.create,
                     imagePath: "assets/animations/create.json",
+                    onTap: () {
+                      Navigator.pushNamed(context, '/qrCreate');
+                    },
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
-              RateUsCard()
+              const RateUsCard()
             ],
           ),
         ),

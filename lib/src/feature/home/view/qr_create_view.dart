@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class QrView extends StatefulWidget {
-  const QrView({super.key});
+class QrCreateView extends StatefulWidget {
+  const QrCreateView({super.key});
 
   @override
-  State<QrView> createState() => _QrViewState();
+  State<QrCreateView> createState() => _QrCreateViewState();
 }
 
-class _QrViewState extends State<QrView> {
+class _QrCreateViewState extends State<QrCreateView> {
   @override
   Widget build(BuildContext context) {
     const String message =

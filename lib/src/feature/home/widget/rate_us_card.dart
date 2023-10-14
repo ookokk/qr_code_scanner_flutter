@@ -15,13 +15,16 @@ class RateUsCard extends ConsumerWidget {
     final currentTheme = ref.watch(themeProvider);
 
     return Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(color: currentTheme.shadowColor, width: 1.2)),
       elevation: 2,
       color: currentTheme.splashColor,
       child: Column(
         children: [
           SvgPicture.asset(
             'assets/images/feel.svg',
-            height: 150,
+            height: 130,
           ),
           const SizedBox(
             height: 8,
