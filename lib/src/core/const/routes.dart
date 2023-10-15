@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/view/personal_information_view.dart';
 import 'package:qr_code_scanner_flutter/src/feature/get_started/view/get_started_view.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/view/home_view.dart';
-import 'package:qr_code_scanner_flutter/src/feature/home/view/qr_create_view.dart';
-import 'package:qr_code_scanner_flutter/src/feature/home/view/qr_scanner_view.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/view/qr_create_view.dart';
+import 'package:qr_code_scanner_flutter/src/feature/scan/view/qr_scanner_view.dart';
 import 'package:qr_code_scanner_flutter/src/feature/splash/view/splash_view.dart';
 
 class Routes {
@@ -16,6 +17,7 @@ class Routes {
   //qr
   static const String qrScanner = '/qrScanner';
   static const String qrCreate = '/qrCreate';
+  static const String personal = '/personal';
 
   static final Map<String, WidgetBuilder> routes = {
     splash: (context) => const SplashView(),
@@ -24,5 +26,6 @@ class Routes {
     //   settings: (context) => const SettingsView(),
     qrScanner: (context) => const QrScannerView(),
     qrCreate: (context) => const QrCreateView(),
+    personal: (context) => PersonalInformationView(),
   };
 }

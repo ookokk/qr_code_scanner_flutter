@@ -6,4 +6,14 @@ class Strings {
   static const String needFeedback =
       "We need your feedback to contribute to the improvement of our app.";
   static const String rateUs = "Rate Us";
+  //create
+  static const String pleaseEnter =
+      "Please enter the information you want to share in your QR code";
+  static const String nameSurname = "Name surname";
+  static const String job = "Job Title";
+  static const String phone = "Phone Number";
+  static const String email = "Email";
+  static const String address = "Address";
+  static const String website = "Website";
+  static const String linkedin = "Linkedin";
 }

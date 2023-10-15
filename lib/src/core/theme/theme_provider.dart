@@ -18,7 +18,7 @@ class ThemeProvider extends StateNotifier<ThemeData> {
   static final ThemeData lightTheme = ThemeData(
     indicatorColor: Colors.black,
     brightness: Brightness.light,
-    cardColor: const Color(0xff94c359),
+    cardColor: const Color(0xffaacc74),
     shadowColor: const Color(0xffcfdcec),
     splashColor: Colors.white,
     dialogBackgroundColor: const Color(0xffF39F5A),

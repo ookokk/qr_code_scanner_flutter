@@ -39,7 +39,7 @@ class HomeView extends ConsumerWidget {
                     text: Strings.create,
                     imagePath: "assets/animations/create.json",
                     onTap: () {
-                      Navigator.pushNamed(context, '/qrCreate');
+                      Navigator.pushNamed(context, '/personal');
                     },
                   ),
                 ],

@@ -5,8 +5,10 @@ import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 
 class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   final VoidCallback? onTap;
+  final String? title;
   const CustomAppBar({
     Key? key,
+    this.title,
     this.onTap,
   }) : super(key: key);
   @override
@@ -26,7 +28,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
         )
       ],
       title: Text(
-        Strings.appName,
+        title ?? Strings.appName,
         style: currentTheme.textTheme.headlineMedium,
       ),
       centerTitle: true,
