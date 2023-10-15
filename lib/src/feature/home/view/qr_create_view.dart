@@ -16,11 +16,10 @@ class _QrCreateViewState extends State<QrCreateView> {
   Widget build(BuildContext context) {
     const String message =
         'Hey this is a QR code. Change this value in the main_screen.dart file.';
-
     final FutureBuilder<ui.Image> qrFutureBuilder = FutureBuilder<ui.Image>(
       future: _loadOverlayImage(),
       builder: (BuildContext ctx, AsyncSnapshot<ui.Image> snapshot) {
-        const double size = 280.0;
+        const double size = 300.0;
         if (!snapshot.hasData) {
           return const SizedBox(width: size, height: size);
         }
@@ -47,9 +46,9 @@ class _QrCreateViewState extends State<QrCreateView> {
       },
     );
 
-    return Material(
-      color: Colors.white,
-      child: SafeArea(
+    return SafeArea(
+      child: Material(
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             Expanded(
