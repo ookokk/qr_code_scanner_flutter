@@ -60,6 +60,7 @@ class PersonalInformationView extends ConsumerWidget {
                     height: 12,
                   ),
                   CustomTextField(
+                      keyboardType: TextInputType.number,
                       controller: phoneCnt,
                       hintText: Strings.phone,
                       icon: Icon(
@@ -115,26 +116,19 @@ class PersonalInformationView extends ConsumerWidget {
                       loadSavedData();
                     },
                   ),
-                  TextButton(
-                      onPressed: () async {
-                        final prefs = CacheManager();
-                        final isim = await prefs.getCustomData('name');
-                        print(isim);
-                      },
-                      child: Text('print'))
                 ],
               ),
             )));
   }
 
   void loadSavedData() async {
-    final prefs = CacheManager();
-    prefs.setCustomData('name', nameCnt.text);
-    prefs.setCustomData('job', jobCnt.text);
-    prefs.setCustomData('phone', phoneCnt.text);
-    prefs.setCustomData('email', emailCnt.text);
-    prefs.setCustomData('address', addressCnt.text);
-    prefs.setCustomData('website', websiteCnt.text);
-    prefs.setCustomData('linkedin', linkedinCnt.text);
+    final cache = CacheManager();
+    cache.setCustomData('name', nameCnt.text);
+    cache.setCustomData('job', jobCnt.text);
+    cache.setCustomData('phone', phoneCnt.text);
+    cache.setCustomData('email', emailCnt.text);
+    cache.setCustomData('address', addressCnt.text);
+    cache.setCustomData('website', websiteCnt.text);
+    cache.setCustomData('linkedin', linkedinCnt.text);
   }
 }

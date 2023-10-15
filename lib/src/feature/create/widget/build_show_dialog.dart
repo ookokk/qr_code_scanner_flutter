@@ -33,7 +33,7 @@ class BuildShowDialog {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/qrCreate');
               },
               child: Text(
                 Strings.okay,

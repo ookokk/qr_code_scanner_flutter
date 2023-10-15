@@ -25,7 +25,7 @@ class Routes {
     home: (context) => const HomeView(),
     //   settings: (context) => const SettingsView(),
     qrScanner: (context) => const QrScannerView(),
-    qrCreate: (context) => const QrCreateView(),
+    qrCreate: (context) => QrCreateView(),
     personal: (context) => PersonalInformationView(),
   };
 }

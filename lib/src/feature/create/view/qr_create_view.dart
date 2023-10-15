@@ -1,21 +1,37 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
+import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class QrCreateView extends StatefulWidget {
-  const QrCreateView({super.key});
+class QrCreateView extends ConsumerWidget {
+  QrCreateView(
+      {super.key,
+      this.linkedin,
+      this.website,
+      this.address,
+      this.email,
+      this.phone,
+      this.job,
+      this.name});
+  late String? name;
+  late String? linkedin;
+  late String? website;
+  late String? address;
+  late String? email;
+  late String? phone;
+  late String? job;
 
   @override
-  State<QrCreateView> createState() => _QrCreateViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTheme = ref.watch(themeProvider);
+    const String message = 'osman';
 
-class _QrCreateViewState extends State<QrCreateView> {
-  @override
-  Widget build(BuildContext context) {
-    const String message =
-        'Hey this is a QR code. Change this value in the main_screen.dart file.';
     final FutureBuilder<ui.Image> qrFutureBuilder = FutureBuilder<ui.Image>(
       future: _loadOverlayImage(),
       builder: (BuildContext ctx, AsyncSnapshot<ui.Image> snapshot) {
@@ -36,7 +52,6 @@ class _QrCreateViewState extends State<QrCreateView> {
               dataModuleShape: QrDataModuleShape.circle,
               color: Color(0xff1a5441),
             ),
-            // size: 320.0,
             embeddedImage: snapshot.data,
             embeddedImageStyle: const QrEmbeddedImageStyle(
               size: Size.square(60),
@@ -47,24 +62,31 @@ class _QrCreateViewState extends State<QrCreateView> {
     );
 
     return SafeArea(
-      child: Material(
-        color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Center(
+      child: Scaffold(
+        backgroundColor: currentTheme.scaffoldBackgroundColor,
+        body: Material(
+          color: Colors.white,
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 18,
+              ),
+              Center(
                 child: SizedBox(
                   width: 280,
                   child: qrFutureBuilder,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40)
-                  .copyWith(bottom: 40),
-              child: const Text(message),
-            ),
-          ],
+              TextButton(
+                onPressed: () {
+                  getSavedData();
+                  print(name);
+                  print(job);
+                },
+                child: Text('Get Data'),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -76,5 +98,23 @@ class _QrCreateViewState extends State<QrCreateView> {
         await rootBundle.load('assets/images/details.png');
     ui.decodeImageFromList(byteData.buffer.asUint8List(), completer.complete);
     return completer.future;
+  }
+
+  void getSavedData() async {
+    final cache = CacheManager();
+    final name = await cache.getCustomData('name');
+    final job = await cache.getCustomData('job');
+    final phone = await cache.getCustomData('phone');
+    final email = await cache.getCustomData('email');
+    final address = await cache.getCustomData('address');
+    final website = await cache.getCustomData('website');
+    final linkedin = await cache.getCustomData('linkedin');
+    this.name = name;
+    this.job = job;
+    this.phone = phone;
+    this.email = email;
+    this.address = address;
+    this.website = website;
+    this.linkedin = linkedin;
   }
 }
