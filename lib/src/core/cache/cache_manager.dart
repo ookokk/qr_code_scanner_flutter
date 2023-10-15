@@ -31,4 +31,24 @@ class CacheManager {
     final preferences = await SharedPreferences.getInstance();
     return preferences.getBool(firstTimeKey);
   }
+
+  Future<void> setCustomData(String key, String? value) async {
+    final preferences = await SharedPreferences.getInstance();
+    if (value != null) {
+      preferences.setString(key, value);
+    } else {
+      // Değer null ise, anahtarı kaldırın (null değer saklanmasın)
+      removeValue(key);
+    }
+  }
+
+  Future<String?> getCustomData(String key) async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getString(key);
+  }
+
+  Future<void> removeValue(String key) async {
+    final preferences = await SharedPreferences.getInstance();
+    preferences.remove(key);
+  }
 }

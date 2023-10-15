@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/widget/build_show_dialog.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/custom_text_field.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/please_card.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/widget/show_dialog_btn.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/model/custom_app_bar.dart';
 
 class PersonalInformationView extends ConsumerWidget {
@@ -103,8 +106,35 @@ class PersonalInformationView extends ConsumerWidget {
                         Icons.insert_link,
                         color: currentTheme.indicatorColor,
                       )),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  ShowDialogBtn(
+                    onTap: () {
+                      BuildShowDialog().buildShowDialog(context, currentTheme);
+                      loadSavedData();
+                    },
+                  ),
+                  TextButton(
+                      onPressed: () async {
+                        final prefs = CacheManager();
+                        final isim = await prefs.getCustomData('name');
+                        print(isim);
+                      },
+                      child: Text('print'))
                 ],
               ),
             )));
+  }
+
+  void loadSavedData() async {
+    final prefs = CacheManager();
+    prefs.setCustomData('name', nameCnt.text);
+    prefs.setCustomData('job', jobCnt.text);
+    prefs.setCustomData('phone', phoneCnt.text);
+    prefs.setCustomData('email', emailCnt.text);
+    prefs.setCustomData('address', addressCnt.text);
+    prefs.setCustomData('website', websiteCnt.text);
+    prefs.setCustomData('linkedin', linkedinCnt.text);
   }
 }

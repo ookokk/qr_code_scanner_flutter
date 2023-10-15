@@ -16,4 +16,8 @@ class Strings {
   static const String address = "Address";
   static const String website = "Website";
   static const String linkedin = "Linkedin";
+  static const String success = "Success";
+  static const String saved = "Your information has been saved";
+  static const String okay = "Okay";
+  static const String save = "Save";
 }
