@@ -1,16 +1,12 @@
-// ignore_for_file: must_be_immutable
-
-import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/iqr_create_state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class QrCreateView extends ConsumerWidget {
-  QrCreateView(
+class QrCreateView extends ConsumerStatefulWidget {
+  const QrCreateView(
       {super.key,
       this.linkedin,
       this.website,
@@ -19,21 +15,26 @@ class QrCreateView extends ConsumerWidget {
       this.phone,
       this.job,
       this.name});
-  late String? name;
-  late String? linkedin;
-  late String? website;
-  late String? address;
-  late String? email;
-  late String? phone;
-  late String? job;
+  final String? name;
+  final String? linkedin;
+  final String? website;
+  final String? address;
+  final String? email;
+  final String? phone;
+  final String? job;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(themeProvider);
-    const String message = 'osman';
+  QrCreateViewState createState() => QrCreateViewState();
+}
+
+class QrCreateViewState extends ConsumerState<QrCreateView>
+    with IQRCreateState {
+  @override
+  Widget build(BuildContext context) {
+    final currentTheme = ref.read(themeProvider);
 
     final FutureBuilder<ui.Image> qrFutureBuilder = FutureBuilder<ui.Image>(
-      future: _loadOverlayImage(),
+      future: loadOverlayImage(),
       builder: (BuildContext ctx, AsyncSnapshot<ui.Image> snapshot) {
         const double size = 300.0;
         if (!snapshot.hasData) {
@@ -80,41 +81,29 @@ class QrCreateView extends ConsumerWidget {
               TextButton(
                 onPressed: () {
                   getSavedData();
-                  print(name);
-                  print(job);
+                  print(message);
+                  print(informationList);
+                  print(informationList[2]);
                 },
                 child: Text('Get Data'),
               ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.perm_contact_cal_outlined),
+                      /*  Text(
+                        informationList[0],
+                        style: currentTheme.textTheme.titleLarge,
+                      )*/
+                    ],
+                  )
+                ],
+              )
             ],
           ),
         ),
       ),
     );
-  }
-
-  Future<ui.Image> _loadOverlayImage() async {
-    final Completer<ui.Image> completer = Completer<ui.Image>();
-    final ByteData byteData =
-        await rootBundle.load('assets/images/details.png');
-    ui.decodeImageFromList(byteData.buffer.asUint8List(), completer.complete);
-    return completer.future;
-  }
-
-  void getSavedData() async {
-    final cache = CacheManager();
-    final name = await cache.getCustomData('name');
-    final job = await cache.getCustomData('job');
-    final phone = await cache.getCustomData('phone');
-    final email = await cache.getCustomData('email');
-    final address = await cache.getCustomData('address');
-    final website = await cache.getCustomData('website');
-    final linkedin = await cache.getCustomData('linkedin');
-    this.name = name;
-    this.job = job;
-    this.phone = phone;
-    this.email = email;
-    this.address = address;
-    this.website = website;
-    this.linkedin = linkedin;
   }
 }
