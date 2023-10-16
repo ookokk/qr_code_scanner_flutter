@@ -2,16 +2,19 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
+import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 
-class QrScannerView extends StatefulWidget {
+class QrScannerView extends ConsumerStatefulWidget {
   const QrScannerView({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _QrScannerViewState();
+  QrScannerViewState createState() => QrScannerViewState();
 }
 
-class _QrScannerViewState extends State<QrScannerView> {
+class QrScannerViewState extends ConsumerState<QrScannerView> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -27,7 +30,9 @@ class _QrScannerViewState extends State<QrScannerView> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = ref.read(themeProvider);
     return Scaffold(
+      backgroundColor: currentTheme.scaffoldBackgroundColor,
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -42,46 +47,70 @@ class _QrScannerViewState extends State<QrScannerView> {
                     Text(
                         'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                   else
-                    const Text('Scan a code'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.toggleFlash();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getFlashStatus(),
-                              builder: (context, snapshot) {
-                                return Text('Flash: ${snapshot.data}');
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.all(8),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: currentTheme.cardColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18))),
+                              onPressed: () async {
+                                await controller?.toggleFlash();
+                                setState(() {});
                               },
-                            )),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.flipCamera();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getCameraInfo(),
-                              builder: (context, snapshot) {
-                                if (snapshot.data != null) {
-                                  return Text(
-                                      'Camera facing ${describeEnum(snapshot.data!)}');
-                                } else {
+                              child: FutureBuilder(
+                                future: controller?.getFlashStatus(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (snapshot.data == true) {
+                                      return Icon(Icons.flash_on,
+                                          color: currentTheme.indicatorColor);
+                                    } else {
+                                      return Icon(
+                                        Icons.flash_off,
+                                        color: currentTheme.indicatorColor,
+                                      );
+                                    }
+                                  }
                                   return const Text('loading');
-                                }
+                                },
+                              )),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(8),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: currentTheme.cardColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18))),
+                              onPressed: () async {
+                                await controller?.flipCamera();
+                                setState(() {});
                               },
-                            )),
-                      )
-                    ],
-                  ),
+                              child: FutureBuilder(
+                                future: controller?.getCameraInfo(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.data != null) {
+                                    if (describeEnum(snapshot.data!) ==
+                                        'back') {
+                                      return Icon(Icons.photo_camera_back,
+                                          color: currentTheme.indicatorColor);
+                                    } else if (describeEnum(snapshot.data!) ==
+                                        'front') {
+                                      return Icon(Icons.photo_camera_front,
+                                          color: currentTheme.indicatorColor);
+                                    }
+                                  }
+                                  return const Text('loading');
+                                },
+                              )),
+                        )
+                      ],
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,21 +118,29 @@ class _QrScannerViewState extends State<QrScannerView> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: currentTheme.cardColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18))),
                           onPressed: () async {
                             await controller?.pauseCamera();
                           },
-                          child: const Text('pause',
-                              style: TextStyle(fontSize: 20)),
+                          child: Text(Strings.pause,
+                              style: currentTheme.textTheme.titleSmall),
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: currentTheme.cardColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18))),
                           onPressed: () async {
                             await controller?.resumeCamera();
                           },
-                          child: const Text('resume',
-                              style: TextStyle(fontSize: 20)),
+                          child: Text(Strings.resume,
+                              style: currentTheme.textTheme.titleSmall),
                         ),
                       )
                     ],

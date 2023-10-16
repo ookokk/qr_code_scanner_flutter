@@ -20,6 +20,8 @@ class Strings {
   static const String saved = "Your information has been saved";
   static const String okay = "Okay";
   static const String save = "Save";
+  static const String pause = "Pause";
+  static const String resume = "Resume";
   static const String goTo = "Go to QR page";
   static const String generate = "Generate QR Code";
   static const String ifYouEnteredAlready =
