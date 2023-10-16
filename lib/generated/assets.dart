@@ -2,11 +2,33 @@
 class Assets {
   Assets._();
 
+  static const String animationsCreate = 'assets/animations/create.json';
+  static const String animationsScan = 'assets/animations/scan.json';
   static const String animationsSplash = 'assets/animations/splash.json';
   static const String fontsUbuntuBold = 'assets/fonts/Ubuntu-Bold.ttf';
   static const String fontsUbuntuItalic = 'assets/fonts/Ubuntu-Italic.ttf';
   static const String fontsUbuntuMedium = 'assets/fonts/Ubuntu-Medium.ttf';
   static const String fontsUbuntuRegular = 'assets/fonts/Ubuntu-Regular.ttf';
+  static const String imagesAppbar = 'assets/images/appbar.png';
+  static const String imagesCelebrate = 'assets/images/celebrate.svg';
   static const String imagesDetails = 'assets/images/details.png';
+  static const String imagesFeel = 'assets/images/feel.svg';
   static const String imagesGs = 'assets/images/gs.png';
+  static const String imagesHome = 'assets/images/home.png';
+  static const String imagesHome2 = 'assets/images/home2.png';
+  static const String imagesInformation = 'assets/images/information.svg';
+  static const String imagesNotify = 'assets/images/notify.svg';
+  static const String imagesOkok = 'assets/images/okok.png';
+  static const String imagesSuccess = 'assets/images/success.svg';
+  static const String translationsArSA = 'assets/translations/ar-SA.json';
+  static const String translationsDeDE = 'assets/translations/de-DE.json';
+  static const String translationsEnUS = 'assets/translations/en-US.json';
+  static const String translationsEsES = 'assets/translations/es-ES.json';
+  static const String translationsFrFR = 'assets/translations/fr-FR.json';
+  static const String translationsJaJP = 'assets/translations/ja-JP.json';
+  static const String translationsNlNL = 'assets/translations/nl-NL.json';
+  static const String translationsPtBR = 'assets/translations/pt-BR.json';
+  static const String translationsRuRU = 'assets/translations/ru-RU.json';
+  static const String translationsTrTR = 'assets/translations/tr-TR.json';
+  static const String translationsZhCN = 'assets/translations/zh-CN.json';
 }
