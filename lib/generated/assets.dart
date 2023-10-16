@@ -4,6 +4,7 @@ class Assets {
 
   static const String animationsCreate = 'assets/animations/create.json';
   static const String animationsScan = 'assets/animations/scan.json';
+  static const String animationsSettings = 'assets/animations/settings.json';
   static const String animationsSplash = 'assets/animations/splash.json';
   static const String fontsUbuntuBold = 'assets/fonts/Ubuntu-Bold.ttf';
   static const String fontsUbuntuItalic = 'assets/fonts/Ubuntu-Italic.ttf';

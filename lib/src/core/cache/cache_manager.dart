@@ -10,7 +10,7 @@ class CacheManager {
   CacheManager._internal();
 
   static const String themeKey = 'theme';
-  static const String firstTimeKey = 'firstTime';
+  static const String isFirstTimeKey = 'isFirstTime';
 
   Future<void> setTheme(String theme) async {
     final preferences = await SharedPreferences.getInstance();
@@ -24,12 +24,12 @@ class CacheManager {
 
   Future<void> setFirstTime() async {
     final preferences = await SharedPreferences.getInstance();
-    preferences.setBool(firstTimeKey, false);
+    preferences.setBool(isFirstTimeKey, false);
   }
 
   Future<bool?> isFirstTime() async {
     final preferences = await SharedPreferences.getInstance();
-    return preferences.getBool(firstTimeKey);
+    return preferences.getBool(isFirstTimeKey);
   }
 
   Future<void> setCustomData(String key, String? value) async {

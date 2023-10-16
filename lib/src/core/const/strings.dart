@@ -22,6 +22,8 @@ class Strings {
   static const String save = "Save";
   static const String pause = "Pause";
   static const String resume = "Resume";
+  static const String language = "Language";
+  static const String darkTheme = "Dark Theme";
   static const String goTo = "Go to QR page";
   static const String generate = "Generate QR Code";
   static const String ifYouEnteredAlready =

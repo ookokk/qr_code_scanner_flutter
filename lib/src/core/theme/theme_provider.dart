@@ -12,6 +12,13 @@ class ThemeProvider extends StateNotifier<ThemeData> {
     currentTheme = lightTheme;
   }
   late ThemeData currentTheme;
+  void toggleTheme() {
+    if (state == ThemeProvider.lightTheme) {
+      state = ThemeProvider.darkTheme;
+    } else {
+      state = ThemeProvider.lightTheme;
+    }
+  }
 
   ThemeData get getCurrentTheme => currentTheme;
 

@@ -6,11 +6,9 @@ import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
   final VoidCallback? onTap;
   final String? title;
-  const CustomAppBar({
-    Key? key,
-    this.title,
-    this.onTap,
-  }) : super(key: key);
+  final Widget? icon;
+  const CustomAppBar({Key? key, this.title, this.onTap, this.icon})
+      : super(key: key);
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.08);
   @override
@@ -18,11 +16,16 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
     final currentTheme = ref.watch(themeProvider);
     return AppBar(
       actions: [
-        Image.asset(
-          'assets/images/appbar.png',
-          height: 50,
-          width: 50,
-        ),
+        icon ??
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
+                icon: Icon(
+                  Icons.settings,
+                  color: currentTheme.indicatorColor,
+                  size: 30,
+                )),
         const SizedBox(
           width: 8,
         )
