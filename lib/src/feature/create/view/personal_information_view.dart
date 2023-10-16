@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/qr_create_helper.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/build_show_dialog.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/custom_text_field.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/please_card.dart';
@@ -20,6 +21,8 @@ class PersonalInformationView extends ConsumerWidget {
   final TextEditingController addressCnt = TextEditingController();
   final TextEditingController websiteCnt = TextEditingController();
   final TextEditingController linkedinCnt = TextEditingController();
+  final QRCreateHelper qrHelper = QRCreateHelper();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(themeProvider);
@@ -115,6 +118,7 @@ class PersonalInformationView extends ConsumerWidget {
                     onTap: () {
                       BuildShowDialog().buildShowDialog(context, currentTheme);
                       loadSavedData();
+                      qrHelper.getSavedData();
                     },
                   ),
                   const SizedBox(
@@ -136,6 +140,7 @@ class PersonalInformationView extends ConsumerWidget {
                     text: Strings.goTo,
                     onTap: () {
                       Navigator.pushNamed(context, '/qrCreate');
+                      qrHelper.getSavedData();
                     },
                   )
                 ],

@@ -1,19 +1,13 @@
 import 'dart:async';
 import 'dart:ui' as ui;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
-import 'package:qr_code_scanner_flutter/src/feature/create/view/qr_create_view.dart';
 
-mixin IQRCreateState on ConsumerState<QrCreateView> {
+class QRCreateHelper extends ChangeNotifier {
   String message = '';
-  List<String> informationList = [];
 
-  @override
-  void initState() async {
-    super.initState();
-    getSavedData();
-  }
+  List<String> informationList = ['', '', '', '', '', '', ''];
 
   Future<ui.Image> loadOverlayImage() async {
     final Completer<ui.Image> completer = Completer<ui.Image>();
@@ -34,9 +28,7 @@ mixin IQRCreateState on ConsumerState<QrCreateView> {
     final linkedin = await cache.getCustomData('linkedin');
     String combinedData =
         [name, job, phone, email, address, website, linkedin].join('|');
-    setState(() {
-      message = combinedData;
-      informationList = combinedData.split('|');
-    });
+    message = combinedData;
+    informationList = combinedData.split('|');
   }
 }

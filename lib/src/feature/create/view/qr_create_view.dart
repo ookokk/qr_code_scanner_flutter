@@ -1,8 +1,10 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
-import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/iqr_create_state.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/qr_create_helper.dart';
+import 'package:qr_code_scanner_flutter/src/feature/create/widget/show_dialog_btn.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QrCreateView extends ConsumerStatefulWidget {
@@ -27,14 +29,20 @@ class QrCreateView extends ConsumerStatefulWidget {
   QrCreateViewState createState() => QrCreateViewState();
 }
 
-class QrCreateViewState extends ConsumerState<QrCreateView>
-    with IQRCreateState {
+class QrCreateViewState extends ConsumerState<QrCreateView> {
+  final QRCreateHelper qrHelper = QRCreateHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    qrHelper.getSavedData();
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentTheme = ref.read(themeProvider);
-
     final FutureBuilder<ui.Image> qrFutureBuilder = FutureBuilder<ui.Image>(
-      future: loadOverlayImage(),
+      future: qrHelper.loadOverlayImage(),
       builder: (BuildContext ctx, AsyncSnapshot<ui.Image> snapshot) {
         const double size = 300.0;
         if (!snapshot.hasData) {
@@ -43,7 +51,7 @@ class QrCreateViewState extends ConsumerState<QrCreateView>
         return CustomPaint(
           size: const Size.square(size),
           painter: QrPainter(
-            data: message,
+            data: qrHelper.message,
             version: QrVersions.auto,
             eyeStyle: const QrEyeStyle(
               eyeShape: QrEyeShape.square,
@@ -55,7 +63,7 @@ class QrCreateViewState extends ConsumerState<QrCreateView>
             ),
             embeddedImage: snapshot.data,
             embeddedImageStyle: const QrEmbeddedImageStyle(
-              size: Size.square(60),
+              size: Size.square(50),
             ),
           ),
         );
@@ -78,31 +86,34 @@ class QrCreateViewState extends ConsumerState<QrCreateView>
                   child: qrFutureBuilder,
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  getSavedData();
-                  print(message);
-                  print(informationList);
-                  print(informationList[2]);
+              ShowDialogBtn(
+                elevation: 5,
+                bgColor: const Color(0xffe3d5d5),
+                text: Strings.generate,
+                onTap: () {
+                  setState(() {
+                    qrHelper.getSavedData();
+                  });
                 },
-                child: const Text('Get Data'),
               ),
               Column(
                 children: [
-                  personalInformationRow(currentTheme,
-                      Icons.perm_contact_cal_outlined, informationList[0]),
                   personalInformationRow(
-                      currentTheme, Icons.business_center, informationList[1]),
-                  personalInformationRow(
-                      currentTheme, Icons.local_phone, informationList[2]),
-                  personalInformationRow(
-                      currentTheme, Icons.email_outlined, informationList[3]),
+                      currentTheme,
+                      Icons.perm_contact_cal_outlined,
+                      qrHelper.informationList[0]),
+                  personalInformationRow(currentTheme, Icons.business_center,
+                      qrHelper.informationList[1]),
+                  personalInformationRow(currentTheme, Icons.local_phone,
+                      qrHelper.informationList[2]),
+                  personalInformationRow(currentTheme, Icons.email_outlined,
+                      qrHelper.informationList[3]),
                   personalInformationRow(currentTheme, Icons.business_outlined,
-                      informationList[4]),
+                      qrHelper.informationList[4]),
                   personalInformationRow(
-                      currentTheme, Icons.http, informationList[5]),
-                  personalInformationRow(
-                      currentTheme, Icons.insert_link, informationList[6]),
+                      currentTheme, Icons.http, qrHelper.informationList[5]),
+                  personalInformationRow(currentTheme, Icons.insert_link,
+                      qrHelper.informationList[6]),
                 ],
               )
             ],

@@ -21,6 +21,7 @@ class Strings {
   static const String okay = "Okay";
   static const String save = "Save";
   static const String goTo = "Go to QR page";
+  static const String generate = "Generate QR Code";
   static const String ifYouEnteredAlready =
       "Go directly to the qr page if you have already entered your details.";
 }
