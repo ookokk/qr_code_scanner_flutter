@@ -10,7 +10,7 @@ mixin IQRCreateState on ConsumerState<QrCreateView> {
   List<String> informationList = [];
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
     getSavedData();
   }

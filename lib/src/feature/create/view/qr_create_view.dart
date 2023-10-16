@@ -85,24 +85,54 @@ class QrCreateViewState extends ConsumerState<QrCreateView>
                   print(informationList);
                   print(informationList[2]);
                 },
-                child: Text('Get Data'),
+                child: const Text('Get Data'),
               ),
               Column(
                 children: [
-                  Row(
-                    children: [
-                      Icon(Icons.perm_contact_cal_outlined),
-                      /*  Text(
-                        informationList[0],
-                        style: currentTheme.textTheme.titleLarge,
-                      )*/
-                    ],
-                  )
+                  personalInformationRow(currentTheme,
+                      Icons.perm_contact_cal_outlined, informationList[0]),
+                  personalInformationRow(
+                      currentTheme, Icons.business_center, informationList[1]),
+                  personalInformationRow(
+                      currentTheme, Icons.local_phone, informationList[2]),
+                  personalInformationRow(
+                      currentTheme, Icons.email_outlined, informationList[3]),
+                  personalInformationRow(currentTheme, Icons.business_outlined,
+                      informationList[4]),
+                  personalInformationRow(
+                      currentTheme, Icons.http, informationList[5]),
+                  personalInformationRow(
+                      currentTheme, Icons.insert_link, informationList[6]),
                 ],
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget personalInformationRow(
+      ThemeData currentTheme, IconData iconData, String text) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Icon(
+              iconData,
+              color: currentTheme.indicatorColor,
+              size: 35,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Text(
+              text,
+              style: currentTheme.textTheme.titleLarge,
+            ),
+          ),
+        ],
       ),
     );
   }

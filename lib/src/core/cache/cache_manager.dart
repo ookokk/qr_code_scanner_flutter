@@ -37,7 +37,6 @@ class CacheManager {
     if (value != null) {
       preferences.setString(key, value);
     } else {
-      // Değer null ise, anahtarı kaldırın (null değer saklanmasın)
       removeValue(key);
     }
   }

@@ -111,11 +111,33 @@ class PersonalInformationView extends ConsumerWidget {
                     height: 12,
                   ),
                   ShowDialogBtn(
+                    text: Strings.save,
                     onTap: () {
                       BuildShowDialog().buildShowDialog(context, currentTheme);
                       loadSavedData();
                     },
                   ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Divider(
+                    color: currentTheme.shadowColor,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    Strings.ifYouEnteredAlready,
+                    style: currentTheme.textTheme.bodyMedium,
+                    textAlign: TextAlign.center,
+                  ),
+                  ShowDialogBtn(
+                    text: Strings.goTo,
+                    onTap: () {
+                      Navigator.pushNamed(context, '/qrCreate');
+                    },
+                  )
                 ],
               ),
             )));
