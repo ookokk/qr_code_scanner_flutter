@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
-import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/qr_create_helper.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/model/custom_app_bar.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/widget/home_button.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/widget/rate_us_card.dart';
@@ -13,7 +12,6 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final QRCreateHelper qrHelper = QRCreateHelper();
     return SafeArea(
         child: Scaffold(
       appBar: const CustomAppBar(),
@@ -42,7 +40,6 @@ class HomeView extends ConsumerWidget {
                     imagePath: "assets/animations/create.json",
                     onTap: () {
                       Navigator.pushNamed(context, '/personal');
-                      qrHelper.getSavedData();
                     },
                   ),
                 ],

@@ -118,7 +118,6 @@ class PersonalInformationView extends ConsumerWidget {
                     onTap: () {
                       BuildShowDialog().buildShowDialog(context, currentTheme);
                       loadSavedData();
-                      qrHelper.getSavedData();
                     },
                   ),
                   const SizedBox(
@@ -140,7 +139,6 @@ class PersonalInformationView extends ConsumerWidget {
                     text: Strings.goTo,
                     onTap: () {
                       Navigator.pushNamed(context, '/qrCreate');
-                      qrHelper.getSavedData();
                     },
                   )
                 ],
