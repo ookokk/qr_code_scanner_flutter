@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/model/custom_app_bar.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/widget/home_button.dart';
 import 'package:qr_code_scanner_flutter/src/feature/home/widget/rate_us_card.dart';
@@ -26,7 +26,7 @@ class HomeView extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   HomeButton(
-                    text: Strings.scan,
+                    text: "scan".tr(),
                     imagePath: "assets/animations/scan.json",
                     onTap: () {
                       Navigator.pushNamed(context, '/qrScanner');
@@ -36,7 +36,7 @@ class HomeView extends ConsumerWidget {
                     width: 8,
                   ),
                   HomeButton(
-                    text: Strings.create,
+                    text: "create".tr(),
                     imagePath: "assets/animations/create.json",
                     onTap: () {
                       Navigator.pushNamed(context, '/personal');

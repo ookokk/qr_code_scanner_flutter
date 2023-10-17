@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 
 class PleaseCard extends ConsumerWidget {
@@ -25,7 +25,7 @@ class PleaseCard extends ConsumerWidget {
           Expanded(
             flex: 2,
             child: Text(
-              Strings.pleaseEnter,
+              "pleaseEnter".tr(),
               style: currentTheme.textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),

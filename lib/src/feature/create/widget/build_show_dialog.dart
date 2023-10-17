@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 
 class BuildShowDialog {
   Future<dynamic> buildShowDialog(
@@ -10,7 +10,7 @@ class BuildShowDialog {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            Strings.success,
+            "success".tr(),
             style: currentTheme.textTheme.titleLarge,
           ),
           content: Column(
@@ -25,7 +25,7 @@ class BuildShowDialog {
                 height: 8,
               ),
               Text(
-                Strings.saved,
+                "saved".tr(),
                 style: currentTheme.textTheme.labelLarge,
               ),
             ],
@@ -36,7 +36,7 @@ class BuildShowDialog {
                 Navigator.pushNamed(context, '/qrCreate');
               },
               child: Text(
-                Strings.okay,
+                "okay".tr(),
                 style: currentTheme.textTheme.titleSmall
                     ?.copyWith(color: Colors.blue),
               ),

@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/qr_create_helper.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/build_show_dialog.dart';
@@ -44,7 +44,7 @@ class PersonalInformationView extends ConsumerWidget {
                   ),
                   CustomTextField(
                       controller: nameCnt,
-                      hintText: Strings.nameSurname,
+                      hintText: "nameSurname".tr(),
                       icon: Icon(
                         Icons.perm_contact_cal_outlined,
                         color: currentTheme.indicatorColor,
@@ -54,7 +54,7 @@ class PersonalInformationView extends ConsumerWidget {
                   ),
                   CustomTextField(
                       controller: jobCnt,
-                      hintText: Strings.job,
+                      hintText: "job".tr(),
                       icon: Icon(
                         Icons.business_center,
                         color: currentTheme.indicatorColor,
@@ -65,7 +65,7 @@ class PersonalInformationView extends ConsumerWidget {
                   CustomTextField(
                       keyboardType: TextInputType.number,
                       controller: phoneCnt,
-                      hintText: Strings.phone,
+                      hintText: "phone".tr(),
                       icon: Icon(
                         Icons.local_phone,
                         color: currentTheme.indicatorColor,
@@ -75,7 +75,7 @@ class PersonalInformationView extends ConsumerWidget {
                   ),
                   CustomTextField(
                       controller: emailCnt,
-                      hintText: Strings.email,
+                      hintText: "email".tr(),
                       icon: Icon(
                         Icons.email_outlined,
                         color: currentTheme.indicatorColor,
@@ -85,7 +85,7 @@ class PersonalInformationView extends ConsumerWidget {
                   ),
                   CustomTextField(
                       controller: addressCnt,
-                      hintText: Strings.address,
+                      hintText: "address".tr(),
                       icon: Icon(
                         Icons.business_outlined,
                         color: currentTheme.indicatorColor,
@@ -95,7 +95,7 @@ class PersonalInformationView extends ConsumerWidget {
                   ),
                   CustomTextField(
                       controller: websiteCnt,
-                      hintText: Strings.website,
+                      hintText: "website".tr(),
                       icon: Icon(
                         Icons.http,
                         color: currentTheme.indicatorColor,
@@ -105,7 +105,7 @@ class PersonalInformationView extends ConsumerWidget {
                   ),
                   CustomTextField(
                       controller: linkedinCnt,
-                      hintText: Strings.linkedin,
+                      hintText: "linkedin".tr(),
                       icon: Icon(
                         Icons.insert_link,
                         color: currentTheme.indicatorColor,
@@ -114,7 +114,7 @@ class PersonalInformationView extends ConsumerWidget {
                     height: 12,
                   ),
                   ShowDialogBtn(
-                    text: Strings.save,
+                    text: "save".tr(),
                     onTap: () {
                       BuildShowDialog().buildShowDialog(context, currentTheme);
                       loadSavedData();
@@ -131,12 +131,12 @@ class PersonalInformationView extends ConsumerWidget {
                     height: 8,
                   ),
                   Text(
-                    Strings.ifYouEnteredAlready,
+                    "ifYouEnteredAlready".tr(),
                     style: currentTheme.textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
                   ShowDialogBtn(
-                    text: Strings.goTo,
+                    text: "goTo".tr(),
                     onTap: () {
                       Navigator.pushNamed(context, '/qrCreate');
                     },

@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner_flutter/src/core/cache/cache_manager.dart';
 import 'package:qr_code_scanner_flutter/src/core/const/device_size.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 
 class GetStartedView extends ConsumerWidget {
@@ -31,7 +31,7 @@ class GetStartedView extends ConsumerWidget {
                 height: 50,
               ),
               Text(
-                Strings.getStartedWelcome,
+                "getStartedWelcome".tr(),
                 style: currentTheme.textTheme.displayMedium
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
@@ -39,7 +39,7 @@ class GetStartedView extends ConsumerWidget {
                 height: 20,
               ),
               Text(
-                Strings.appName,
+                "appName".tr(),
                 style: currentTheme.textTheme.headlineSmall,
               ),
               const SizedBox(

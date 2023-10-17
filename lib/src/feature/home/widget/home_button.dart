@@ -52,7 +52,9 @@ class HomeButton extends ConsumerWidget {
         children: [
           Expanded(
             flex: 4,
-            child: Lottie.asset(imagePath, animate: false),
+            child: Lottie.asset(
+              imagePath,
+            ),
           ),
           Expanded(
             child: Text(

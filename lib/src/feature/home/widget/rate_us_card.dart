@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -64,7 +64,7 @@ class RateUsCard extends ConsumerWidget {
           ),
           Text(
             textAlign: TextAlign.center,
-            Strings.needFeedback, // Metin
+            "needFeedback".tr(), // Metin
             style: currentTheme.textTheme.titleMedium,
           ),
           const SizedBox(
@@ -84,7 +84,7 @@ class RateUsCard extends ConsumerWidget {
               }
             },
             child: Text(
-              Strings.rateUs,
+              "rateUs".tr(),
               style: currentTheme.textTheme.titleMedium,
             ),
           ),

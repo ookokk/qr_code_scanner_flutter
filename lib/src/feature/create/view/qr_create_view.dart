@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/viewmodel/qr_create_helper.dart';
 import 'package:qr_code_scanner_flutter/src/feature/create/widget/show_dialog_btn.dart';
@@ -89,7 +89,7 @@ class QrCreateViewState extends ConsumerState<QrCreateView> {
               ShowDialogBtn(
                 elevation: 5,
                 bgColor: const Color(0xffe3d5d5),
-                text: Strings.generate,
+                text: "generate".tr(),
                 onTap: () {
                   setState(() {
                     qrHelper.getSavedData();

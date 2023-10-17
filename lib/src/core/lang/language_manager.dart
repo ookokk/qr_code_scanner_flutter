@@ -42,7 +42,7 @@ class LanguageManager {
     if (supportedLocales.contains(newLocale)) {
       _currentLocale = newLocale;
     } else {
-      _currentLocale = turkishLocale;
+      _currentLocale = englishLocale;
     }
   }
 }

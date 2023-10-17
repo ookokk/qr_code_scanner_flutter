@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_code_scanner_flutter/src/core/const/strings.dart';
 import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 
 class QrScannerView extends ConsumerStatefulWidget {
@@ -125,7 +125,7 @@ class QrScannerViewState extends ConsumerState<QrScannerView> {
                           onPressed: () async {
                             await controller?.pauseCamera();
                           },
-                          child: Text(Strings.pause,
+                          child: Text("pause".tr(),
                               style: currentTheme.textTheme.titleSmall),
                         ),
                       ),
@@ -139,7 +139,7 @@ class QrScannerViewState extends ConsumerState<QrScannerView> {
                           onPressed: () async {
                             await controller?.resumeCamera();
                           },
-                          child: Text(Strings.resume,
+                          child: Text("resume".tr(),
                               style: currentTheme.textTheme.titleSmall),
                         ),
                       )
