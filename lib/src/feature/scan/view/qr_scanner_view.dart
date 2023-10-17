@@ -44,8 +44,7 @@ class QrScannerViewState extends ConsumerState<QrScannerView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+                    Text('Data: ${result!.code}')
                   else
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

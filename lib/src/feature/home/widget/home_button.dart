@@ -59,7 +59,7 @@ class HomeButton extends ConsumerWidget {
           Expanded(
             child: Text(
               text,
-              style: currentTheme.textTheme.headlineMedium,
+              style: currentTheme.textTheme.titleLarge,
             ),
           )
         ],

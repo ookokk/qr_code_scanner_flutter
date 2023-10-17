@@ -6,6 +6,8 @@ import 'package:qr_code_scanner_flutter/src/core/theme/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RateUsCard extends ConsumerWidget {
+  static const String rateUsUrl =
+      "https://play.google.com/store/apps/details?id=com.okok.qr_code_scanner";
   const RateUsCard({
     Key? key,
   }) : super(key: key);
@@ -75,12 +77,12 @@ class RateUsCard extends ConsumerWidget {
                 minimumSize: const Size(120, 45),
                 backgroundColor: currentTheme.cardColor),
             onPressed: () async {
-              const url = 'https://github.com/ookokk';
+              const url = rateUsUrl;
               final Uri uri = Uri.parse(url);
               if (await canLaunchUrl(uri)) {
                 await launchUrl(uri);
               } else {
-                throw 'URL açılamadı: $url';
+                throw 'error can not open url: $url';
               }
             },
             child: Text(
