@@ -24,19 +24,32 @@ void main() {
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themePreference = CacheManager().getCustomData('theme');
-    final currentTheme = themePreference == 'dark'
-        ? ThemeProvider.darkTheme
-        : ThemeProvider.lightTheme;
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      locale: context.locale,
-      routes: Routes.routes,
-      theme: currentTheme,
-      debugShowCheckedModeBanner: false,
-      home: const HomeView(),
+    return FutureBuilder<String?>(
+      future: CacheManager().getCustomData('theme'),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          final themePreference = snapshot.data;
+          ThemeData? currentTheme;
+          if (themePreference == 'dark') {
+            currentTheme = ThemeProvider.darkTheme;
+          } else {
+            currentTheme = ThemeProvider.lightTheme;
+          }
+          return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            locale: context.locale,
+            routes: Routes.routes,
+            theme: currentTheme,
+            debugShowCheckedModeBanner: false,
+            home: const HomeView(),
+          );
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
     );
   }
 }

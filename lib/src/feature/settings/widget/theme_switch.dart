@@ -18,7 +18,6 @@ class _CustomSwitchState extends ConsumerState<ThemeSwitch> {
   @override
   void initState() {
     super.initState();
-    // internalValue = ref.read(themeProvider.notifier).isDarkTheme();
   }
 
   @override
